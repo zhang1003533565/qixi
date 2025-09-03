@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<!-- saved from url=(0058)file:///C:/Users/LENOVO/Desktop/Debug/love_confession.html -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>七夕爱心表白 ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24, #ff9ff3, #54a0ff);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            overflow: hidden;
+            font-family: 'Microsoft YaHei', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+        }
+
+        .main-heart {
+            font-size: 8rem;
+            color: #ff1744;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(255, 23, 68, 0.8);
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 0 20px #ff1744);
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .love-text {
+            color: white;
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 2s ease forwards 1s;
+        }
+
+        .subtitle {
+            color: #ffe0e6;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 2s ease forwards 2s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            color: #ff69b4;
+            font-size: 2rem;
+            animation: floatUp 6s linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes floatUp {
+            from {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .poem {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            margin-top: 2rem;
+            opacity: 0;
+            animation: fadeInUp 2s ease forwards 3s;
+            box-shadow: 0 8px 32px rgba(255, 23, 68, 0.3);
+        }
+
+        .poem-line {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
+
+        .sparkles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            animation: sparkle 3s linear infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        .click-hint {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1.1rem;
+            opacity: 0;
+            animation: fadeInUp 2s ease forwards 4s;
+            background: rgba(0,0,0,0.3);
+            padding: 10px 20px;
+            border-radius: 25px;
+            backdrop-filter: blur(5px);
+        }
+
+        .special-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(45deg, #ff6b9d, #c44569);
+            padding: 3rem;
+            border-radius: 30px;
+            color: white;
+            font-size: 2rem;
+            text-align: center;
+            display: none;
+            z-index: 100;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            border: 3px solid #fff;
+        }
+
+        .fireworks {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        .firework {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            animation: explode 2s ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(20);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts-container" id="heartsContainer"><div class="floating-heart" style="left: 79.3411vw; font-size: 2.15334rem; animation-duration: 6.64338s; animation-delay: 1.62312s;">❤️</div><div class="floating-heart" style="left: 55.3145vw; font-size: 1.50784rem; animation-duration: 6.01462s; animation-delay: 0.0887522s;">💖</div><div class="floating-heart" style="left: 76.0452vw; font-size: 1.66713rem; animation-duration: 5.70971s; animation-delay: 0.512814s;">💕</div><div class="floating-heart" style="left: 78.2621vw; font-size: 1.89731rem; animation-duration: 6.43729s; animation-delay: 1.48052s;">💖</div><div class="floating-heart" style="left: 83.2695vw; font-size: 1.00066rem; animation-duration: 6.92638s; animation-delay: 0.81981s;">💖</div><div class="floating-heart" style="left: 6.30669vw; font-size: 1.5959rem; animation-duration: 5.24644s; animation-delay: 0.100033s;">💝</div><div class="floating-heart" style="left: 66.7661vw; font-size: 2.39944rem; animation-duration: 6.25953s; animation-delay: 1.4177s;">💝</div><div class="floating-heart" style="left: 17.7996vw; font-size: 1.73467rem; animation-duration: 6.46984s; animation-delay: 0.0838114s;">❤️</div><div class="floating-heart" style="left: 76.6004vw; font-size: 1.36483rem; animation-duration: 5.12228s; animation-delay: 0.00398313s;">❤️</div><div class="floating-heart" style="left: 43.3923vw; font-size: 2.28916rem; animation-duration: 5.56466s; animation-delay: 0.887678s;">💖</div></div>
+    <div class="sparkles" id="sparkles"><div class="sparkle" style="left: 77.7129vw; top: 97.1612vh; animation-delay: 2.46956s;"></div><div class="sparkle" style="left: 86.7275vw; top: 19.3911vh; animation-delay: 2.73315s;"></div><div class="sparkle" style="left: 75.6046vw; top: 13.7923vh; animation-delay: 2.83416s;"></div><div class="sparkle" style="left: 90.653vw; top: 28.1175vh; animation-delay: 2.81595s;"></div><div class="sparkle" style="left: 12.5464vw; top: 77.7982vh; animation-delay: 1.06062s;"></div><div class="sparkle" style="left: 62.9102vw; top: 90.3976vh; animation-delay: 1.6511s;"></div><div class="sparkle" style="left: 67.6028vw; top: 69.1336vh; animation-delay: 1.74084s;"></div><div class="sparkle" style="left: 52.0866vw; top: 34.0067vh; animation-delay: 2.23662s;"></div><div class="sparkle" style="left: 29.2505vw; top: 70.1717vh; animation-delay: 2.47976s;"></div><div class="sparkle" style="left: 13.9528vw; top: 86.906vh; animation-delay: 1.44577s;"></div></div>
+    <div class="fireworks" id="fireworks"></div>
+    
+    <div class="container">
+        <div class="main-heart" id="mainHeart">❤️</div>
+        <div class="love-text">我爱你，我的宝贝</div>
+        <div class="subtitle">在这个浪漫的七夕夜晚</div>
+        
+        <div class="poem">
+            <div class="poem-line">星河璀璨不如你眼中的光芒</div>
+            <div class="poem-line">银河相会不如我们的相遇</div>
+            <div class="poem-line">牛郎织女的爱情传说很美</div>
+            <div class="poem-line">但我们的爱情故事更加动人</div>
+            <div class="poem-line">愿与你共度每一个七夕</div>
+            <div class="poem-line">爱你到永远 ❤️</div>
+        </div>
+    </div>
+    
+    <div class="click-hint">💖 点击屏幕感受更多惊喜 💖</div>
+    
+    <div class="special-message" id="specialMessage">
+        <div>💕 我的心永远属于你 💕</div>
+        <div style="font-size: 1.2rem; margin-top: 1rem;">七夕快乐，我最爱的人！</div>
+    </div>
+
+    <script>
+        // 创建飘落的爱心
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.innerHTML = ['❤️', '💖', '💕', '💗', '💝'][Math.floor(Math.random() * 5)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = (Math.random() * 2 + 1) + 'rem';
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            
+            document.getElementById('heartsContainer').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 8000);
+        }
+
+        // 创建闪烁星星
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * 100 + 'vw';
+            sparkle.style.top = Math.random() * 100 + 'vh';
+            sparkle.style.animationDelay = Math.random() * 3 + 's';
+            
+            document.getElementById('sparkles').appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 3000);
+        }
+
+        // 创建烟花效果
+        function createFirework(x, y) {
+            const colors = ['#ff6b9d', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#fab1a0'];
+            
+            for (let i = 0; i < 15; i++) {
+                const firework = document.createElement('div');
+                firework.className = 'firework';
+                firework.style.left = x + 'px';
+                firework.style.top = y + 'px';
+                firework.style.background = colors[Math.floor(Math.random() * colors.length)];
+                firework.style.animationDelay = Math.random() * 0.3 + 's';
+                
+                document.getElementById('fireworks').appendChild(firework);
+                
+                setTimeout(() => {
+                    firework.remove();
+                }, 2000);
+            }
+        }
+
+        // 初始化效果
+        setInterval(createFloatingHeart, 800);
+        setInterval(createSparkle, 300);
+
+        // 点击事件
+        let clickCount = 0;
+        document.addEventListener('click', (e) => {
+            clickCount++;
+            createFirework(e.clientX, e.clientY);
+            
+            if (clickCount === 3) {
+                document.getElementById('specialMessage').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('specialMessage').style.display = 'none';
+                }, 3000);
+            }
+        });
+
+        // 主爱心点击特效
+        document.getElementById('mainHeart').addEventListener('click', (e) => {
+            e.stopPropagation();
+            const heart = e.target;
+            heart.style.transform = 'scale(1.5)';
+            heart.style.color = '#ff1744';
+            
+            setTimeout(() => {
+                heart.style.transform = '';
+            }, 300);
+            
+            // 创建环形烟花
+            for (let angle = 0; angle < 360; angle += 30) {
+                setTimeout(() => {
+                    const x = window.innerWidth / 2 + Math.cos(angle * Math.PI / 180) * 200;
+                    const y = window.innerHeight / 2 + Math.sin(angle * Math.PI / 180) * 200;
+                    createFirework(x, y);
+                }, angle * 2);
+            }
+        });
+
+        // 键盘事件
+        document.addEventListener('keydown', (e) => {
+            if (e.key === ' ') {
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(() => {
+                        createFloatingHeart();
+                    }, i * 100);
+                }
+            }
+        });
+
+        // 页面加载完成后的欢迎效果
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                for (let i = 0; i < 10; i++) {
+                    setTimeout(() => {
+                        createFirework(
+                            Math.random() * window.innerWidth,
+                            Math.random() * window.innerHeight
+                        );
+                    }, i * 200);
+                }
+            }, 5000);
+        });
+
+        // 添加音频效果（可选）
+        function playLoveSound() {
+            // 创建简单的音频上下文来播放浪漫的音调
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(523.25, audioContext.currentTime); // C5
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 1);
+        }
+
+        // 每隔一段时间播放音效
+        setInterval(() => {
+            try {
+                playLoveSound();
+            } catch (e) {
+                // 静默处理音频错误
+            }
+        }, 10000);
+    </script>
+
+</body></html>
